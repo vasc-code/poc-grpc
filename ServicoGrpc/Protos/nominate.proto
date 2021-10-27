@@ -1,0 +1,18 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "ServicoGrpc";
+
+package nominate;
+
+service Nominator {
+  rpc GetFullName(NameRequest) returns (NameReply);
+}
+
+message NameRequest {
+  string lastName = 1;
+  string firstName = 2;
+}
+
+message NameReply {
+  string message = 1;
+}
