@@ -1,8 +1,9 @@
-﻿using Grpc.Net.Client;
+﻿using ClienteGrpc;
+using Grpc.Net.Client;
 using System;
 using System.Threading.Tasks;
 
-namespace ClienteGrpc
+namespace ClientConsoleGrpc
 {
     class Program
     {
@@ -20,7 +21,7 @@ namespace ClienteGrpc
 
                 switch (opcao)
                 {
-                    case "1": 
+                    case "1":
                         await SayHello(greeter);
                         break;
 
@@ -46,8 +47,8 @@ namespace ClienteGrpc
             );
 
             Console.WriteLine("Saudação: " + reply.Message);
-        }        
-        
+        }
+
         private static async Task GetFullName(Nominator.NominatorClient client)
         {
             var reply = await client.GetFullNameAsync(
