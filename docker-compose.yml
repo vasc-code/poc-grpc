@@ -1,0 +1,54 @@
+﻿version: '3.4'
+
+services:
+
+  servicogrpc:
+    container_name: servicogrpc
+    hostname: servicogrpc
+    image: servicogrpc:rc1
+    build:
+      context: ServicoGrpc/
+      dockerfile: Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - Environment=DEV
+    volumes:
+      - /ServicoGrpc/etc/appsettings.json:/app/appsettings.Production.json
+    ports:
+      - '5001:80'
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 300M
+    restart: always
+    networks:
+      - grpc
+
+  clientapi:
+    container_name: clientapi
+    hostname: clientapi
+    image: clientapi:rc1
+    build:
+      context: ClientAPI/
+      dockerfile: Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - Environment=DEV
+      - URL_SERVICO_GRPC=https://servicogrpc:80
+    volumes:
+      - /ClientAPI/etc/appsettings.json:/app/appsettings.Production.json
+    ports:
+      - '5002:80'
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 300M
+    restart: always
+    networks:
+      - grpc
+
+networks:
+  grpc:
+    driver: bridge
