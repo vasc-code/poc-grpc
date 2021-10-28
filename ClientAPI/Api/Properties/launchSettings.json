@@ -25,7 +25,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development",
         "NextRetryInSeconds": "2",
         "RetryCount": "3",
-        "URL_SERVICO_GRPC": "https://localhost:5001"
+        "URL_SERVICO_GRPC": "http://localhost:5001"
       },
       "launchBrowser": true,
       "launchUrl": "swagger"

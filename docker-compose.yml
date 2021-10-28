@@ -35,7 +35,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - Environment=DEV
-      - URL_SERVICO_GRPC=https://servicogrpc:80
+      - URL_SERVICO_GRPC=http://servicogrpc
     volumes:
       - /ClientAPI/etc/appsettings.json:/app/appsettings.Production.json
     ports:
