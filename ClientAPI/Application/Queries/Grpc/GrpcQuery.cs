@@ -6,7 +6,6 @@ using ClienteGrpc;
 using Domain.Dtos.Grpc.GetFullName;
 using Domain.Dtos.Grpc.SayHello;
 using Grpc.Net.Client;
-using Infrastructure.Messages.Interfaces;
 using Microsoft.Extensions.Configuration;
 using System.Threading.Tasks;
 
@@ -14,15 +13,12 @@ namespace Application.Queries.Grpc
 {
     public class GrpcQuery : IGrpcQuery
     {
-        private readonly IMessagesHandler _messagesHandler;
         private readonly GrpcChannel _grpcChannel;
         private readonly Greeter.GreeterClient _greeter;
         private readonly Nominator.NominatorClient _nominator;
 
-        public GrpcQuery(IMessagesHandler messagesHandler,
-                         IConfiguration configuration)
+        public GrpcQuery(IConfiguration configuration)
         {
-            _messagesHandler = messagesHandler;
             _grpcChannel = GrpcChannel.ForAddress(configuration.GetSection("URL_SERVICO_GRPC").Value);
             _greeter = new Greeter.GreeterClient(_grpcChannel);
             _nominator = new Nominator.NominatorClient(_grpcChannel);
