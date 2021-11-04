@@ -5,7 +5,7 @@ using Domain.Dtos.Grpc.SayHello;
 
 namespace Application.Queries.Grpc.Mappers
 {
-    internal static class TraceMapper
+    internal static class GrpcMapper
     {
         internal static SayHelloInputDto MapToSayHelloInputDto(this SayHelloInput input)
         {
